@@ -19,13 +19,13 @@ class Application
 
     /**
      * Application constructor.
-     * @param $configFile
-     * @param $routingFile
+     * @param Config $config
+     * @param Router $router
      */
-    public function __construct($configFile, $routingFile)
+    public function __construct(Config $config, Router $router)
     {
-        $this->config = new Config($configFile);
-        $this->router = new Router($routingFile);
+        $this->config = $config;
+        $this->router = $router;
     }
 
     public function init()
