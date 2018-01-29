@@ -40,13 +40,11 @@ class UserController extends Controller
         $this->checkCredentials();
         $serializer = new Serializer();
 
-        $collection = $this->getCollection();
-        $collection = array_filter($collection->getModels(), function(User $model) use ($id) {
-            return $model->getId() === $id;
-        });
-        header('Content-Type: application/json');
-        if (count($collection) !== 0) {
-            return $serializer->serialize(array_pop($collection));
+        $model = $this->getCollection()->findById($id);
+
+        if ($model !== null) {
+            header('Content-Type: application/json');
+            return $serializer->serialize($model);
         }
 
         throw new NotFoundHttpException();

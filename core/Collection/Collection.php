@@ -35,4 +35,18 @@ class Collection
         return $this->models;
     }
 
+
+    /**
+     * @param int $id
+     * @return mixed|null
+     */
+    public function findById(int $id)
+    {
+        $collection = array_filter($this->models, function(Model $model) use ($id) {
+            return $model->getId() === $id;
+        });
+
+        return count($collection) ? array_pop($collection) : null;
+    }
+
 }
