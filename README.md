@@ -10,5 +10,7 @@ GET /users/:id
 
 
 For basic authentication need to enter username and password (file app/config.php):
+
 user: admin
+
 password: admin
